@@ -1,6 +1,7 @@
 from flask.views import MethodView
 from flask_smorest import Blueprint, abort
 from sqlalchemy.exc import SQLAlchemyError, IntegrityError
+from flask_cors import cross_origin
 
 from db import db
 from models import BusinessModel
@@ -26,6 +27,7 @@ class Business(MethodView):
 
 
 @blp.route("/business")
+@cross_origin()
 class BusinessList(MethodView):
     @blp.response(200, BusinessSchema(many=True))
     def get(self):
