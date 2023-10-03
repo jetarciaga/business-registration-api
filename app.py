@@ -3,6 +3,7 @@ import os
 from flask import Flask
 from flask_smorest import Api
 from flask_migrate import Migrate
+from flask_cors import CORS
 
 from db import db
 import models
@@ -14,6 +15,7 @@ from dotenv import load_dotenv
 
 def create_app():
     app = Flask(__name__)
+    CORS(app)
     load_dotenv()
 
     app.config["PROGATE_EXCEPTIONS"] = True
