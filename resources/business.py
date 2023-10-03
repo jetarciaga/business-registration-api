@@ -9,7 +9,7 @@ from schemas import BusinessSchema
 
 
 blp = Blueprint("Businesses,", "businesses", description="Operations on businesses")
-CORS(blp)
+# CORS(blp)
 
 
 @blp.route("/business/<int:business_id>")
