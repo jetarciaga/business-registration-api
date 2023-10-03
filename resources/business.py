@@ -1,7 +1,7 @@
 from flask.views import MethodView
 from flask_smorest import Blueprint, abort
 from sqlalchemy.exc import SQLAlchemyError, IntegrityError
-from flask_cors import cross_origin
+from flask_cors import CORS
 
 from db import db
 from models import BusinessModel
@@ -9,6 +9,7 @@ from schemas import BusinessSchema
 
 
 blp = Blueprint("Businesses,", "businesses", description="Operations on businesses")
+CORS(blp)
 
 
 @blp.route("/business/<int:business_id>")
@@ -25,9 +26,7 @@ class Business(MethodView):
         db.session.commit()
         return {"message": "Business deleted"}, 200
 
-
 @blp.route("/business")
-@cross_origin()
 class BusinessList(MethodView):
     @blp.response(200, BusinessSchema(many=True))
     def get(self):
