@@ -1,5 +1,4 @@
 flask
-flask-cors
 flask-smorest
 python-dotenv
 sqlalchemy
